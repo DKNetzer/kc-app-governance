@@ -1,0 +1,28 @@
+# ---------------------------------------------------------
+# Knowledge Catalog POC - Master Glossary
+# This file is environment-agnostic. 
+# The target dataset suffix (_dev, _test, _prod) is injected by the engine.
+# ---------------------------------------------------------
+
+business_rules:
+  - name: "High-Risk Nation"
+    description: "Nations flagged for trade restrictions."
+    status: "ACTIVE"
+    sql_formula: "N_NATIONKEY IN (10, 15)"
+    target_table: "nation"
+    target_column: "N_NATIONKEY"
+
+  - name: "VIP Customer"
+    description: "Customers with a high balance tier."
+    status: "ACTIVE"
+    sql_formula: "C_ACCTBAL > 5000.00"
+    target_table: "customer"
+    target_column: "C_ACCTBAL"
+
+security_classifications:
+  - name: "Customer Contact Info"
+    description: "PII data for customer communication."
+    data_domain: "SALES"
+    contains_pii: true
+    target_table: "customer"
+    target_column: "C_PHONE"
